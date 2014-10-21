@@ -21,7 +21,7 @@ function HomeControl(controlDiv, map) {
   // Set CSS for the control border.
   var controlUI = document.createElement('div');
   controlUI.title = 'Click to set the map to Home';
-  controlUI.innerHTML = '<button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star"></span></button>';
+  controlUI.innerHTML = '<div class="panel panel-default leftpanel">'+'<div class="panel-heading">Panel heading</div><div class="panel-body"><form action="index.html" method="post"><fieldset><h3>Filters</h3><label for="power">POWER</label><br><input type="range" id="power" name="filter_power"><br><label for="time">HOURS/DAY</label><br><input type="range" id="time" name="filter_time"><br><label for="age">AGE</label><br><input type="range" id="age" name="filter_age"></fieldset><fieldset><h3>Remark</h3><input type="checkbox" id="led" name="remark_led"><label for="lef">LED</label><br><input type="checkbox" id="heatmap" name="remark_heatmap"><label for="heatmap">HEATMAP</label><br><input type="checkbox" id="old" name="remark_old"><label for="old">OLD</label></fieldset></form></div></div>';
   controlDiv.appendChild(controlUI);
 
   // VARIABLES
