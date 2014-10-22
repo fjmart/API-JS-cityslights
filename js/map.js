@@ -7,7 +7,6 @@
  * returns the user to Chicago. This constructor takes
  * the control DIV as an argument.
  */
-
 function HomeControl(controlDiv, map) {
 
   // Set CSS styles for the DIV containing the control
@@ -29,14 +28,47 @@ function HomeControl(controlDiv, map) {
     map.setCenter(chicago)
   });
 
-   controlUI.innerHTML = '<div class="panel panel-default leftpanel"><div class="panel-heading">Panel heading</div><div class="panel-body"><form action="index.html" method="post"><fieldset><h3>Filters</h3><label for="power">POWER</label><br><input type="range" id="power" name="filter_power"><br><label for="time">HOURS/DAY</label><br><input type="range" id="time" name="filter_time"><br><label for="age">AGE</label><br><input type="range" id="age" name="filter_age"></fieldset><fieldset><h3>Remark</h3><input type="checkbox" id="led" name="remark_led"><label for="lef">LED</label><br><input type="checkbox" id="heatmap" name="remark_heatmap"><label for="heatmap">HEATMAP</label><br><input type="checkbox" id="old" name="remark_old"><label for="old">OLD</label></fieldset></form></div></div>';
-
-
-
-
+   controlUI.innerHTML = '<button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-th-large"></span></button>';
 }
+function FiltersControl(controlDiv, map) {
 
+  // Set CSS styles for the DIV containing the control
+  // Setting padding to 5 px will offset the control
+  // from the edge of the map.
+  controlDiv.style.padding = '25px';
 
+  // Set CSS for the control border.
+  var controlUI = document.createElement('div');
+  controlUI.title = 'Click to set the map to Home';
+ 
+  controlDiv.appendChild(controlUI);
+
+  // VARIABLES
+
+  var chicago = new google.maps.LatLng(-34.397, 150.644);
+  // Setup the click event listeners: simply set the map to Chicago.
+  google.maps.event.addDomListener(controlUI, 'click', function() {
+    map.setCenter(chicago)
+  });
+
+   controlUI.innerHTML = '<div class="panel panel-default leftpanel"><div class="panel-heading">Panel heading</div><div class="panel-body"><form action="index.html" method="post"><fieldset><h3>Filters</h3><label for="power">POWER</label><br><input type="range" id="power" name="filter_power"><br><label for="time">HOURS/DAY</label><br><input type="range" id="time" name="filter_time"><br><label for="age">AGE</label><br><input type="range" id="age" name="filter_age"></fieldset><fieldset><h3>Remark</h3><input type="checkbox" id="led" name="remark_led"><label for="lef">LED</label><br><input type="checkbox" id="heatmap" name="remark_heatmap"><label for="heatmap">HEATMAP</label><br><input type="checkbox" id="old" name="remark_old"><label for="old">OLD</label></fieldset></form></div></div>';
+}
+function GraphsControl(graphsControlDiv, map){
+  graphsControlDiv.style.padding = '25px';
+
+  var controlUI = document.createElement('div');
+
+  graphsControlDiv.appendChild(controlUI);
+  controlUI.innerHTML = '<div class="panel panel-default leftpanel"><div class="panel-heading">Panel heading</div><div class="panel-body"><form action="index.html" method="post"><fieldset><h3>Filters</h3><label for="power">POWER</label><br><input type="range" id="power" name="filter_power"><br><label for="time">HOURS/DAY</label><br><input type="range" id="time" name="filter_time"><br><label for="age">AGE</label><br><input type="range" id="age" name="filter_age"></fieldset><fieldset><h3>Remark</h3><input type="checkbox" id="led" name="remark_led"><label for="lef">LED</label><br><input type="checkbox" id="heatmap" name="remark_heatmap"><label for="heatmap">HEATMAP</label><br><input type="checkbox" id="old" name="remark_old"><label for="old">OLD</label></fieldset></form></div></div>';
+}
+function ExamplesControl(graphsControlDiv, map){
+  graphsControlDiv.style.padding = '25px';
+
+  var controlUI = document.createElement('div');
+
+  graphsControlDiv.appendChild(controlUI);
+  controlUI.innerHTML = '<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Examples<span class="caret"></span></button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li></ul></div>';
+}
 
 function initialize() {
   // Create an array of styles.
@@ -102,11 +134,22 @@ function initialize() {
 
   // Create the DIV to hold the control and call the HomeControl() constructor
   // passing in this DIV.
-  var graphsControlDiv = document.createElement('div');
-  var graphsControlDiv = new graphsControl(graphsControlDiv, map);
-  graphsControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(graphsControlDiv);
+  var filtersControlDiv = document.createElement('div');
+  var filtersControl = new FiltersControl(filtersControlDiv, map);
+  filtersControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(filtersControlDiv);
 
+  // Create the DIV to hold the control and call the HomeControl() constructor
+  // passing in this DIV.
+  var graphsControlDiv = document.createElement('div');
+  var graphsControl = new GraphsControl(graphsControlDiv, map);
+  graphsControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(graphsControlDiv);
+
+  var examplesControlDiv = document.createElement('div');
+  var examplesControl = new ExamplesControl(examplesControlDiv, map);
+  examplesControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(examplesControlDiv);
 
 }
 
