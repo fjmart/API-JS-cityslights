@@ -1,9 +1,3 @@
-<script type="text/html"> 
-
-<div class="panel panel-default leftpanel">'+'<div class="panel-heading">Panel heading</div><div class="panel-body"><form action="index.html" method="post"><fieldset><h3>Filters</h3><label for="power">POWER</label><br><input type="range" id="power" name="filter_power"><br><label for="time">HOURS/DAY</label><br><input type="range" id="time" name="filter_time"><br><label for="age">AGE</label><br><input type="range" id="age" name="filter_age"></fieldset><fieldset><h3>Remark</h3><input type="checkbox" id="led" name="remark_led"><label for="lef">LED</label><br><input type="checkbox" id="heatmap" name="remark_heatmap"><label for="heatmap">HEATMAP</label><br><input type="checkbox" id="old" name="remark_old"><label for="old">OLD</label></fieldset></form></div></div>
-</script>
-
-
 // Construct your control in whatever manner is appropriate.
 // Generally, your constructor will want access to the
 // DIV on which you'll attach the control UI to the Map.
@@ -47,37 +41,37 @@ function HomeControl(controlDiv, map) {
 function initialize() {
   // Create an array of styles.
   var styles = [
-  {
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "color": "#5c8080" }
-    ]
-  },{
-    "featureType": "road",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "hue": "#e6ff00" }
-    ]
-  },{
-    "featureType": "road.local",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "hue": "#f6ff00" },
-      { "lightness": 41 },
-      { "saturation": 23 }
-    ]
-  },{
-    "featureType": "road.arterial",
-    "elementType": "geometry.stroke",
-    "stylers": [
-      { "saturation": 23 },
-      { "lightness": 41 },
-      { "hue": "#f6ff00" }
-    ]
-  },{
-    "featureType": "road.highway.controlled_access",
-    "elementType": "geometry.fill"  },{
-  }
+      {
+        "elementType": "geometry.fill",
+        "stylers": [
+          { "color": "#5c8080" }
+        ]
+      },{
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+          { "hue": "#e6ff00" }
+        ]
+      },{
+        "featureType": "road.local",
+        "elementType": "geometry.fill",
+        "stylers": [
+          { "hue": "#f6ff00" },
+          { "lightness": 41 },
+          { "saturation": 23 }
+        ]
+      },{
+        "featureType": "road.arterial",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          { "saturation": 23 },
+          { "lightness": 41 },
+          { "hue": "#f6ff00" }
+        ]
+      },{
+        "featureType": "road.highway.controlled_access",
+        "elementType": "geometry.fill"  },{
+      }
 ]
 // Create a new StyledMapType object, passing it the array of styles,
   // as well as the name to be displayed on the map type control.
@@ -106,12 +100,12 @@ function initialize() {
   homeControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
 
- // Create the DIV to hold the control and call the HomeControl() constructor
+  // Create the DIV to hold the control and call the HomeControl() constructor
   // passing in this DIV.
   var graphsControlDiv = document.createElement('div');
   var graphsControlDiv = new graphsControl(graphsControlDiv, map);
   graphsControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(graphsControlDiv);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(graphsControlDiv);
 
 
 }
