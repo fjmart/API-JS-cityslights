@@ -59,8 +59,10 @@ function GraphsControl(graphsControlDiv, map){
   var controlUI = document.createElement('div');
 
   graphsControlDiv.appendChild(controlUI);
-  controlUI.innerHTML = '<div class="panel panel-default leftpanel"><div class="panel-heading">Panel heading</div><div class="panel-body"><form action="index.html" method="post"><fieldset><h3>Filters</h3><label for="power">POWER</label><br><input type="range" id="power" name="filter_power"><br><label for="time">HOURS/DAY</label><br><input type="range" id="time" name="filter_time"><br><label for="age">AGE</label><br><input type="range" id="age" name="filter_age"></fieldset><fieldset><h3>Remark</h3><input type="checkbox" id="led" name="remark_led"><label for="lef">LED</label><br><input type="checkbox" id="heatmap" name="remark_heatmap"><label for="heatmap">HEATMAP</label><br><input type="checkbox" id="old" name="remark_old"><label for="old">OLD</label></fieldset></form></div></div>';
+  controlUI.innerHTML = '<div class="panel panel-default rightpanel"><div class="panel-heading"><h2>Panel heading</h2><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-th"></span></button></div><div class="panel-body"><div><h5>Consumo tipo farola</h5><canvas></canvas></div><div><h5>Consumo horas encendido</h5><select><option value="range1">0-7</option><option value="range2">7-8</option><option value="range3">8-10</option><option value="range4">10-12</option><option value="range5">12-14</option></select><canvas></canvas></div><div><h5>Sustitución</h5><form action="index.html" method="post"><label for="typeA">Type A</label><input type="number" id="typeA" min="0" max="20" step="2" value="10" name="amount_typeA"/><br><label for="typeB">Type B</label><input type="number" id="typeB" min="0" max="20" step="2" value="10" name="amount_typeB"/><br><label for="typeC">Type C</label><input type="number" id="typeA" min="0" max="20" step="2" value="10" name="amount_typeC"/><br></form><canvas></canvas></div></div><div class="panel-footer"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-filter"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-globe"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-stats"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-warning-sign"></span></button></div></div>';
 }
+
+
 function ExamplesControl(graphsControlDiv, map){
   graphsControlDiv.style.padding = '25px';
 
@@ -69,6 +71,12 @@ function ExamplesControl(graphsControlDiv, map){
   graphsControlDiv.appendChild(controlUI);
   controlUI.innerHTML = '<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">Examples<span class="caret"></span></button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li></ul></div>';
 }
+function MenuControl(graphsControlDiv, map){
+  var controlUI = document.createElement('div');
+  graphsControlDiv.appendChild(controlUI);
+  controlUI.innerHTML = '<button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-th-large"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-th-list"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-user"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-comment"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-globe"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-edit"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-info-sign"></span></button><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-leaf"></span></button> ';
+}
+
 
 function initialize() {
   // Create an array of styles.
@@ -144,12 +152,17 @@ function initialize() {
   var graphsControlDiv = document.createElement('div');
   var graphsControl = new GraphsControl(graphsControlDiv, map);
   graphsControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(graphsControlDiv);
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(graphsControlDiv);
 
   var examplesControlDiv = document.createElement('div');
   var examplesControl = new ExamplesControl(examplesControlDiv, map);
   examplesControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(examplesControlDiv);
+
+  var menuControlDiv = document.createElement('div');
+  var menuControl = new MenuControl(menuControlDiv, map);
+  menuControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(menuControlDiv);
 
 }
 
